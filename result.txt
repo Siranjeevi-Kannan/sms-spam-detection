@@ -1,0 +1,89 @@
+Majority class baseline (always predict ham): 0.8659 accuracy
+Class distribution:
+label
+ham     4825
+spam     747
+Name: count, dtype: int64
+
+Config                                           Precision       Recall         F1
+BoW (1,1) + MNB, no sw removed                0.958±0.009  0.938±0.014  0.948±0.011
+BoW (1,1) + MNB, sw removed                   0.953±0.016  0.953±0.018  0.953±0.013
+BoW (1,2) + MNB, no sw removed                0.976±0.012  0.924±0.027  0.949±0.019
+BoW (1,2) + MNB, sw removed                   0.964±0.012  0.944±0.020  0.954±0.014
+BoW (1,1) + CNB, no sw removed                0.903±0.018  0.952±0.017  0.926±0.014
+TF-IDF (1,1) + CNB, no sw removed             0.932±0.010  0.920±0.023  0.926±0.013
+TF-IDF (1,2) + CNB, no sw removed             0.970±0.013  0.866±0.026  0.915±0.017
+BoW (1,1) + LR, no sw removed                 0.982±0.016  0.930±0.015  0.955±0.015
+BoW (1,2) + LR, no sw removed                 0.987±0.012  0.914±0.014  0.949±0.013
+TF-IDF (1,1) + LR, no sw removed              0.953±0.015  0.950±0.013  0.952±0.011
+TF-IDF (1,1) + LR, sw removed                 0.950±0.016  0.942±0.018  0.946±0.017
+TF-IDF (1,2) + LR, no sw removed              0.960±0.018  0.952±0.011  0.956±0.013
+TF-IDF (1,2) + LR, sw removed                 0.937±0.014  0.950±0.017  0.943±0.015
+
+Detailed report — TF-IDF (1,2) + LR, no sw removed
+              precision    recall  f1-score   support
+
+         ham       0.99      1.00      0.99       966
+        spam       0.97      0.95      0.96       149
+
+    accuracy                           0.99      1115
+   macro avg       0.98      0.97      0.98      1115
+weighted avg       0.99      0.99      0.99      1115
+
+
+False Positives — ham classified as spam:
+waiting for your call
+ok ur typical reply
+hey pple __currency__ 700 or __currency__ 900 for 5 night excellent location wif breakfast hamper __exclaim__
+hi this is yijue it s regarding the 3230 textbook it s intro to algorithm second edition i m selling it for __currency__ 50
+
+False Negatives — spam classified as ham:
+ringtoneking 84484
+latest news police station toilet stolen cop have nothing to go on
+for sale arsenal dartboard good condition but no double or treble
+email alertfrom jeri stewartsize 2kbsubject low cost prescripiton drvgsto listen to email call 123
+romcapspam everyone around should be responding well to your presence since you are so warm and outgoing you are bringing in a real breath of sunshine
+Top 15 spam indicator features:
+__phone__            7.6224
+__currency__         6.2273
+txt                  4.7674
+__url__              4.4018
+free                 4.3917
+to                   3.9733
+call __phone__       3.9582
+text                 3.6756
+call                 3.6103
+reply                3.4208
+stop                 3.2828
+your                 3.1836
+from                 2.9638
+service              2.8116
+mobile               2.7681
+
+Top 15 ham indicator features:
+my                   -2.4468
+me                   -2.2313
+it                   -2.0352
+ok                   -1.7578
+that                 -1.7407
+but                  -1.5477
+ll                   -1.5230
+gt                   -1.4878
+lt                   -1.4613
+so                   -1.3595
+lt gt                -1.2851
+home                 -1.2416
+da                   -1.2232
+at                   -1.2129
+can                  -1.2096
+Input: Congratulations! You've won a free £1000 prize. Call now!
+Processed: congratulation you ve won a free __currency__ 1000 prize call now
+Prediction: spam  (ham: 0.085, spam: 0.915)
+
+Input: Hey, are we still meeting for lunch tomorrow?
+Processed: hey are we still meeting for lunch tomorrow
+Prediction: ham  (ham: 0.908, spam: 0.092)
+
+Input: URGENT: Your account has been compromised. Verify now at www.google.com
+Processed: urgent your account ha been compromised verify now at __url__
+Prediction: spam  (ham: 0.319, spam: 0.681)
